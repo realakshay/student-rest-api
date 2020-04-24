@@ -20,3 +20,10 @@ class Student(Resource):
         student=StudentModel(data['name'],data['prn'])
         student.insert_in_db()
         return {"message":"Insert Success"},201
+    
+    def delete(self, prn):
+        student=StudentModel.find_by_prn(prn)
+        if student:
+            student.delete_from_db()
+            return {"message":"deleted successful"},201
+        return {"message":"Record not found"},404
