@@ -10,13 +10,13 @@ class Student(Resource):
         student=StudentModel.find_by_prn(prn)
         if student:
             return student.json()
-        return {"message":"Student not found"}
+        return {"message":"Student not found"},201
     
     def post(self,prn):
         data=Student.parser.parse_args()
         student=StudentModel.find_by_prn(prn)
         if student:
-            return {"message":"Already Exist"}
+            return {"message":"Already Exist"},201
         student=StudentModel(data['name'],data['prn'])
         student.insert_in_db()
         return {"message":"Insert Success"},201
