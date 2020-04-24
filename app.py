@@ -1,9 +1,9 @@
 from flask import Flask
 from flask_restful import Api
-from models.StudentModel import StudentModel
-from models.TestModel import TestModel
 from resources.student import Student
 from resources.test import Test
+from resources.user import User
+
 
 
 app=Flask(__name__)
@@ -18,6 +18,7 @@ def create_tables():
 
 api.add_resource(Student,'/student/<int:prn>')
 api.add_resource(Test,'/test/<int:prn>')
+api.add_resource(User,'/user/<string:username>')
 
 if __name__ == "__main__":
     from db import db
