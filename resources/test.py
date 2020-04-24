@@ -23,3 +23,9 @@ class Test(Resource):
         test.insert_in_db()
         return {"message":"Test Done"}
 
+    def delete(self, prn):
+        test=TestModel.find_by_prn(prn)
+        if test:
+            test.delete_from_db()
+            return {"message":"test record deleted"},201
+        return {"message":"record not found"},404
