@@ -36,3 +36,7 @@ class Student(Resource):
             student.insert_in_db()
             return student.json()
         return {"message":"Record not found"},404
+
+class StudentList(Resource):
+    def get(self):
+        return {"students":[x.json() for x in StudentModel.query.all()]}

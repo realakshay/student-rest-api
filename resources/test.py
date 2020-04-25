@@ -40,3 +40,7 @@ class Test(Resource):
             test.insert_in_db()
             return test.json(),201
         return {"message":"record not found"},404
+
+class TestList(Resource):
+    def get(self):
+        return {"tests":[x.json() for x in TestModel.query.all()]}
