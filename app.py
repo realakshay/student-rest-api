@@ -1,13 +1,15 @@
 from flask import Flask
 from flask_restful import Api
+from flask_jwt import JWT, jwt_required
 from resources.student import Student
 from resources.test import Test
 from resources.user import User
-
+from security import authenticate,identity
 
 
 app=Flask(__name__)
 api=Api(app)
+jwt=JWT(app,authenticate,identity)
 app.secret_key="secret"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///data.db'
