@@ -22,7 +22,7 @@ class StudentModel(db.Model):
 
     def delete_from_db(self):
         db.session.delete(self)
-        db.commit()
+        db.session.commit()
 
     @classmethod
     def find_by_prn(cls,prn):
