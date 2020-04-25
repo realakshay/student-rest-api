@@ -27,3 +27,12 @@ class Student(Resource):
             student.delete_from_db()
             return {"message":"deleted successful"},201
         return {"message":"Record not found"},404
+
+    def put(self,prn):
+        data=Student.parser.parse_args()
+        student=StudentModel.find_by_prn(prn)
+        if student:
+            student.name=data['name']
+            student.insert_in_db()
+            return student.json()
+        return {"message":"Record not found"},404
